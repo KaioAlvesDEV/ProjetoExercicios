@@ -1,0 +1,96 @@
+Algoritmo "PrecoPromocional"
+Var
+   preco_base, preco_promocional : real
+   porcentagem_desconto : real
+   pause: caractere
+Inicio
+
+   mudacor("Amarelo", "Frente")
+
+   escreval("------------------------------------------------------------------")
+   escreval("")
+   escreval("")
+   escreval("")
+   escreval("                         BEM-VINDO(a) A")
+   escreval("")
+   escreval("              /|\/|\/|/|\/|\/|\/|/|\/|\/|\/|/|\/|\")
+   escreval("              / CALCULADORA DE PREÇO PROMOCIONAL \")
+   escreval("              /|\/|\/|/|\/|\/|\/|/|\/|\/|\/|/|\/|\")
+   escreval("")
+   escreval("                         created by kaio")
+   escreval("")
+   escreval("")
+   escreval("                /aperte ENTER para prosseguir.../")
+   escreval("")
+   escreval("")
+   escreval("------------------------------------------------------------------")
+   leia(pause)
+   limpatela
+   
+   escreval("")
+   escreval("              /|\/|\/|/|\/|\/|\/|/|\/|\/|\/|/|\/|\")
+   escreval("              / CALCULADORA DE PREÇO PROMOCIONAL \")
+   escreval("              /|\/|\/|/|\/|\/|\/|/|\/|\/|\/|/|\/|\")
+   escreval("")
+   escreval("")
+   escreval("__________________________etapa_1_de_2____________________________")
+   escreval("")
+   escreval("")
+   escreval("")
+   escreval("                \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/")
+   escreval("                \INSIRA O PREÇO BASE DO PRODUTO/")
+   escreval("                \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/")
+   escreval("")
+   escreva("                >>  ")
+   leia(preco_base)
+   escreval("")
+   escreval("")
+   escreva("                /aperte ENTER para prosseguir.../")
+   leia(pause)
+   limpatela
+   
+   escreval("")
+   escreval("              /|\/|\/|/|\/|\/|\/|/|\/|\/|\/|/|\/|\")
+   escreval("              / CALCULADORA DE PREÇO PROMOCIONAL \")
+   escreval("              /|\/|\/|/|\/|\/|\/|/|\/|\/|\/|/|\/|\")
+   escreval("")
+   escreval("")
+   escreval("__________________________etapa_2_de_2____________________________")
+   escreval("")
+   escreval("")
+   escreval("")
+   escreval("              \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\")
+   escreval("              \ INSIRA A % DE DESCONTO DO PRODUTO \")
+   escreval("              \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\")
+   escreval("")
+   escreva("              >>  ")
+   leia(porcentagem_desconto)
+   escreval("")
+   escreval("")
+   escreva("                /aperte ENTER para prosseguir.../")
+   leia(pause)
+   limpatela
+   
+   preco_promocional <- preco_base - (preco_base * porcentagem_desconto) / 100
+   
+   escreval("")
+   escreval("              /|\/|\/|/|\/|\/|\/|/|\/|\/|\/|/|\/|\")
+   escreval("              / CALCULADORA DE PREÇO PROMOCIONAL \")
+   escreval("              /|\/|\/|/|\/|\/|\/|/|\/|\/|\/|/|\/|\")
+   escreval("")
+   escreval("")
+   escreval("__________________________________________________________________")
+   escreval("")
+   escreval("")
+   escreval("")
+   escreval("         /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/")
+   escreval("         /O PREÇO PROMOCIONAL DO PRODUTO É DE R$", preco_promocional:1:2)
+   escreval("         /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/")
+   escreval("")
+   escreval("                      Obrigado(a) por usar!")
+   escreval("                             by kaio")
+   escreval("")
+   escreva("             /aperte ESC para encerrar o processo.../")
+   leia(pause)
+   
+Fimalgoritmo

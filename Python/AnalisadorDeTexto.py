@@ -1,0 +1,7 @@
+texto = input('Digite um texto: ').strip()
+print(f'{texto.upper()}\n{texto.lower()}')
+print(f'{len(texto.replace(' ', ''))} caracteres!')
+texto = texto.split()
+print(f'Primeiro nome é {texto[0]}')
+print(f'Primeiro nome tem {len(texto[0])} caracteres')
+input()

@@ -1,0 +1,5 @@
+numeros = tuple(int(input(f'INSIRA O NÚMERO {numero}: ')) for numero in range(1, 5))
+pares = tuple(n for n in numeros if n % 2 == 0)
+print(f'9 APARECEU {numeros.count(9)} VEZES!')
+print(f'3 FOI ENCONTRADO PRIMEIRO NA POSIÇÃO {numeros.index(3) + 1 if 3 in numeros else '?'}')
+print(f'PARES: {pares}')
