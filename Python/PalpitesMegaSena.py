@@ -33,6 +33,6 @@ for i, jogo in enumerate(jogos_mega_sena, 1):
 
     sleep(0.5)
     # Formatação para alinhar os números dos jogos
-    print(f'\033[92mJOGO {i}:', end=' ' * (qtd_digitos_qtd_jogos - len(str(i)) + 1))
+    print(f'JOGO {i}:', end=' ' * (qtd_digitos_qtd_jogos - len(str(i)) + 1))
     for numero in jogo:
-        print(f'\033[93m{numero:02}', end=', ' if numero != jogo[-1] else '\n')
+        print(f'{numero:02}', end=', ' if numero != jogo[-1] else '\n')
