@@ -12,6 +12,9 @@ for i in range(1, 8):
     else:
         pares_impares[1].append(num)
 
+pares_impares[0].sort()
+pares_impares[1].sort()
+
 # Exibindo os números pares e ímpares
 print('Números pares digitados: ', end=': ')
 for par in pares_impares[0]:
