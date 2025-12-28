@@ -27,10 +27,16 @@ while not sair:
         sair = True
         break
 
-print(alunos_e_notas)
+print('===' * 10, ' BOLETIM ', '===' * 10)
+print(f'\n{"Nº":<4}{"ALUNO":<30}{"MÉDIA":>8}')
 
-### AMANHÃ: 
-# Exbir média de cada aluno
+# Exibir a média de cada aluno
+for i, aluno in enumerate(alunos_e_notas):
+    media_aluno = sum(aluno[1]) / 2
+    print(f'{i:<4}{aluno[0]:<30}{media_aluno:>8.2f}')
+
+### TAREFAS HOJE: 
+# Exibir média de cada aluno |FEITA|
 # Permitir verificar notas de cada aluno individualmente
 # Mostrar quem tirou a maior e menor nota
 # Mostrar quem reprovou, quem passou e quem vai pra prova final
