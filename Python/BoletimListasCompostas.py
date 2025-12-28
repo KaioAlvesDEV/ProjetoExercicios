@@ -1,4 +1,4 @@
-# BETA v1.1 - Boletim com Listas Compostas
+# BETA v1.0.3 - Boletim com Listas Compostas
 
 sair = False
 alunos_e_notas = [] # Lista para armazenar nomes dos alunos e suas notas
@@ -14,15 +14,23 @@ while not sair:
 
         notas_aluno.append(float(input(f'Digite a {i + 1}ª nota de {nome_aluno}: ')))
     
+    # Perguntar se o usuário deseja sair
     while True:
         sair_input = input('Deseja sair? (S/N): ').upper().strip()
         if sair_input in ('S', 'N', 'SIM', 'NÃO'):
             break
         
     alunos_e_notas.append([nome_aluno, notas_aluno])
-    
+
+    # Verificar se o usuário deseja sair do loop principal
     if sair_input in ('S', 'SIM'):
         sair = True
         break
 
 print(alunos_e_notas)
+
+### AMANHÃ: 
+# Exbir média de cada aluno
+# Permitir verificar notas de cada aluno individualmente
+# Mostrar quem tirou a maior e menor nota
+# Mostrar quem reprovou, quem passou e quem vai pra prova final
