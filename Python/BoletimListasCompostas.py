@@ -1,9 +1,11 @@
-# BETA v1.0.3 - Boletim com Listas Compostas
-
 sair = False
 alunos_e_notas = [] # Lista para armazenar nomes dos alunos e suas notas
 alunos_maiores_medias = [] # Lista para armazenar alunos com maiores médias
 alunos_menores_medias = [] # Lista para armazenar alunos com menores médias
+
+# Notas de corte
+nota_para_passar = 7.0
+nota_para_reprovar = 4.0
 
 # Loop para adicionar alunos e suas notas
 while not sair:
@@ -30,7 +32,7 @@ while not sair:
         break
 
 print('===' * 10, ' BOLETIM ', '===' * 10)
-print(f'\n{"Nº":<4}{"ALUNO":<30}{"MÉDIA":>8}')
+print(f'\n{"Nº":<4}{"ALUNO":<30}{"MÉDIA":>8}{"STATUS":>29}')
 
 # Exibir a média de cada aluno
 for i, aluno in enumerate(alunos_e_notas, 1):
@@ -65,8 +67,18 @@ for i, aluno in enumerate(alunos_e_notas, 1):
             menor_media = media_aluno
             alunos_menores_medias.append(aluno[0])
 
-    print(f'{i:<4}{aluno[0]:<30}{media_aluno:>8.2f}')
+    # Determinar o status do aluno
+    status = ''
+    if media_aluno >= nota_para_passar:
+        status = '(APROVADO)'
+    elif media_aluno <= nota_para_reprovar:
+        status = '(REPROVADO)'
+    else:
+        status = '(PROVA FINAL)'
 
+    print(f'{i:<4}{aluno[0]:<30}{media_aluno:>8.2f}{status:>29}')
+
+# Exibir alunos com maiores e menores médias
 print('\nMaior média: ', end='')
 for i, aluno in enumerate(alunos_maiores_medias):
     if i == 0:
@@ -115,9 +127,3 @@ while True:
     aluno_selecionado = alunos_e_notas[aluno_numero - 1]
 
     print(f'\nNotas de {aluno_selecionado[0]}: {aluno_selecionado[1][0]} e {aluno_selecionado[1][1]}\n')
-
-### TAREFAS HOJE: 
-# Exibir média de cada aluno |FEITA|
-# Permitir verificar notas de cada aluno individualmente |FEITA|
-# Mostrar quem tirou a maior e menor média
-# Mostrar quem reprovou, quem passou e quem vai pra prova final
