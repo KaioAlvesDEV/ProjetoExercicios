@@ -2,6 +2,8 @@
 
 sair = False
 alunos_e_notas = [] # Lista para armazenar nomes dos alunos e suas notas
+alunos_maiores_medias = [] # Lista para armazenar alunos com maiores médias
+alunos_menores_medias = [] # Lista para armazenar alunos com menores médias
 
 # Loop para adicionar alunos e suas notas
 while not sair:
@@ -34,7 +36,56 @@ print(f'\n{"Nº":<4}{"ALUNO":<30}{"MÉDIA":>8}')
 for i, aluno in enumerate(alunos_e_notas, 1):
 
     media_aluno = sum(aluno[1]) / 2
+
+    # Verificar maior e menor média
+    if i == 1:
+
+        alunos_maiores_medias.append(aluno[0])
+        alunos_menores_medias.append(aluno[0])
+        maior_media = media_aluno
+        menor_media = media_aluno
+
+    else:
+
+        if media_aluno >= maior_media:
+
+            if media_aluno > maior_media:
+
+                alunos_maiores_medias.clear()
+
+            maior_media = media_aluno
+            alunos_maiores_medias.append(aluno[0])
+
+        if media_aluno <= menor_media:
+
+            if media_aluno < menor_media:
+
+                alunos_menores_medias.clear()
+
+            menor_media = media_aluno
+            alunos_menores_medias.append(aluno[0])
+
     print(f'{i:<4}{aluno[0]:<30}{media_aluno:>8.2f}')
+
+print('\nMaior média: ', end='')
+for i, aluno in enumerate(alunos_maiores_medias):
+    if i == 0:
+        print(aluno, end='')
+    elif i == len(alunos_maiores_medias) - 1:
+        print(f' e {aluno}', end='')
+    else:
+        print(f', {aluno}', end='')
+print(f' com média {maior_media:.2f}')
+
+print('Menor média: ', end='')
+for i, aluno in enumerate(alunos_menores_medias):
+    if i == 0:
+        print(aluno, end='')
+    elif i == len(alunos_menores_medias) - 1:
+        print(f' e {aluno}', end='')
+    else:
+        print(f', {aluno}', end='')
+print(f' com média {menor_media:.2f}\n')
 
 sair = False
 
@@ -63,10 +114,10 @@ while True:
     
     aluno_selecionado = alunos_e_notas[aluno_numero - 1]
 
-    print(f'Notas de {aluno_selecionado[0]}: {aluno_selecionado[1][0]} e {aluno_selecionado[1][1]}')
+    print(f'\nNotas de {aluno_selecionado[0]}: {aluno_selecionado[1][0]} e {aluno_selecionado[1][1]}\n')
 
 ### TAREFAS HOJE: 
 # Exibir média de cada aluno |FEITA|
-# Permitir verificar notas de cada aluno individualmente
-# Mostrar quem tirou a maior e menor nota
+# Permitir verificar notas de cada aluno individualmente |FEITA|
+# Mostrar quem tirou a maior e menor média
 # Mostrar quem reprovou, quem passou e quem vai pra prova final
