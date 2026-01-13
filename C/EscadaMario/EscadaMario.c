@@ -34,14 +34,15 @@ int main(void)
 
 void desenhar_escada(int tamanho_escada)
 {
+    const char SIMBOLO = '#';
     for(int linha = INDICE_INICIAL; linha <= tamanho_escada; linha++)
     {
         for(int coluna = INDICE_INICIAL; coluna <= tamanho_escada; coluna++)
         {
-            bool mostrar_asterisco = coluna + linha >= tamanho_escada;
-            if(mostrar_asterisco)
+            bool mostrar_simbolo = coluna + linha >= tamanho_escada;
+            if(mostrar_simbolo)
             {
-                printf("*");
+                printf("%c", SIMBOLO);
             }
             else
             {
@@ -49,11 +50,21 @@ void desenhar_escada(int tamanho_escada)
             }
         }
 
-        for(int preenchimento = linha; preenchimento > 0; preenchimento--)
+        printf(" ");
+
+        for(int coluna = INDICE_INICIAL; coluna <= tamanho_escada; coluna++)
         {
-            printf("*");
+            bool mostrar_simbolo = coluna - linha <= 0;
+            if(mostrar_simbolo)
+            {
+                printf("%c", SIMBOLO);
+            }
+            else
+            {
+                printf(" ");
+            }
         }
 
         printf("\n");
     }
-}   
+}
