@@ -1,6 +1,6 @@
 /*
     ~ By Kaio Duan Alves Santos ~
-                    "Go Slowly"
+                 "Vá lentamente"
 */
 
 #include <stdio.h>
