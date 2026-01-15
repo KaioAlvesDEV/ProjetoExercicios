@@ -8,20 +8,22 @@
 #include <math.h>
 
 unsigned long long int numero_cartao;
+
 unsigned long long int ler_numero_cartao(void);
-unsigned long long potencia_de_10(int expoente);
-int qtd_digitos(unsigned long long int numero);
-char* bandeira_cartao(unsigned long long int numero_cartao);
+
 bool validar_numero_cartao_usando_luhn(unsigned long long int numero_cartao);
+
 bool cartao_eh_amex(unsigned long long int numero_cartao);
 bool cartao_eh_mastercard(unsigned long long int numero_cartao);
 bool cartao_eh_visa(unsigned long long int numero_cartao);
 bool cartao_eh_discover(unsigned long long int numero_cartao);
 bool cartao_eh_diners_club(unsigned long long int numero_cartao);
 bool cartao_eh_nubank(unsigned long long int numero_cartao);
+char* bandeira_cartao(unsigned long long int numero_cartao);
 
+unsigned long long potencia_de_10(int expoente);
+int qtd_digitos(unsigned long long int numero);
 void pausa(void);
-
 
 int main()
 {
@@ -47,7 +49,7 @@ int main()
 unsigned long long int ler_numero_cartao(void)
 {
     printf("Digite o numero do cartao: ");
-    scanf("%llu", &numero_cartao);
+    scanf("%I64u", &numero_cartao);
     getchar();
 
     return numero_cartao;
@@ -55,30 +57,26 @@ unsigned long long int ler_numero_cartao(void)
 
 bool validar_numero_cartao_usando_luhn(unsigned long long int numero_cartao)
 {
+    const int LIMITE_DIGITO = 9;
+    const int BASE_LUNH = 10;
+
     int soma = 0;
     int qtd_digitos_cartao = qtd_digitos(numero_cartao);
     bool deve_dobrar;
 
-    if(qtd_digitos_cartao % 2 == 0)
-    {
-        deve_dobrar = true;
-    }
-    else
-    {
-        deve_dobrar = false;
-    }
+    deve_dobrar = false;
 
-    for (int i = 0; i <= qtd_digitos_cartao - 1; i++)
+    for (int i = qtd_digitos_cartao; i > 0; i--)
     {
-        unsigned long long divisor = potencia_de_10(qtd_digitos_cartao - 1 - i);
-        int digito_atual = (numero_cartao / divisor) % 10;
+        unsigned long long divisor = potencia_de_10(qtd_digitos_cartao - i);
+        int digito_atual = (numero_cartao / divisor) % BASE_LUNH;
 
         if (deve_dobrar)
         {
             digito_atual *= 2;
-            if (digito_atual > 9)
+            if (digito_atual > LIMITE_DIGITO)
             {
-                digito_atual -= 9;
+                digito_atual -= LIMITE_DIGITO;
             }
         }
 
@@ -86,7 +84,8 @@ bool validar_numero_cartao_usando_luhn(unsigned long long int numero_cartao)
         deve_dobrar = !deve_dobrar;
     }
 
-    return (soma % 10) == 0;
+    bool cartao_valido = (soma % BASE_LUNH) == 0;
+    return cartao_valido;
 }
 
 int qtd_digitos(unsigned long long int numero)
