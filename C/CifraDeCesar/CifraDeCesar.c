@@ -1,31 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
+#include <string.h>
 
-//Erros
-const int VALOR_CORRETO_DE_ARGUMENTOS = 3;
-const int VALOR_NO_INTERVALO_ERRADO = 2;
+const int VALOR_CORRETO_DE_ARGUMENTOS = 2;
 
 //Protótipos
-int temNumeroErradoDeArgumentos(int argc, int valor_correto_de_argumentos);
-int temErros(int argc);
+bool temNumeroErradoDeArgumentos(int argc, int valor_correto_de_argumentos);
+bool temErros(int argc);
+int perguntarAChave(void);
+char* perguntarOTexto(void);
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
+    //Erros
+    const bool NUMERO_ERRADO_DE_ARGUMENTOS = temNumeroErradoDeArgumentos(argc, VALOR_CORRETO_DE_ARGUMENTOS);
+
     const int POSICAO_CHAVE = 1;
+
+    int chave = 0;
+
     if(temErros(argc))
     {
-        const bool NUMERO_ERRADO_DE_ARGUMENTOS = temNumeroErradoDeArgumentos(argc, VALOR_CORRETO_DE_ARGUMENTOS);
-
-        if (NUMERO_ERRADO_DE_ARGUMENTOS) return 1;
+        if (NUMERO_ERRADO_DE_ARGUMENTOS) 
+        {
+            chave = perguntarAChave();
+        }
     }
 
-    int chave = atoi(argv[POSICAO_CHAVE]);
+    if (!NUMERO_ERRADO_DE_ARGUMENTOS)
+    {
+        chave = atoi(argv[POSICAO_CHAVE]);
+    }
 
-    char texto[10000] = "";
-    printf("Digite o texto a ser cifrado: ");
-    fgets(texto, 10000, stdin);
+    char texto[1000];
+    strcpy(texto, perguntarOTexto());
+
     printf("Texto original: %s", texto);
 
     for(int caractere_atual = 0; texto[caractere_atual] != '\n'; caractere_atual++)
@@ -49,7 +59,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-int temNumeroErradoDeArgumentos(int argc, int valor_correto_de_argumentos)
+bool temNumeroErradoDeArgumentos(int argc, int valor_correto_de_argumentos)
 {
     if(argc != valor_correto_de_argumentos)
     {
@@ -58,13 +68,29 @@ int temNumeroErradoDeArgumentos(int argc, int valor_correto_de_argumentos)
     return false;
 }
 
-int temErros(int argc)
+bool temErros(int argc)
 {
     if(temNumeroErradoDeArgumentos(argc, VALOR_CORRETO_DE_ARGUMENTOS))
     {
-        printf("Erro: Numero errado de argumentos.\n");
-        printf("Uso correto: ./cifraDeCesar chave texto\n");
+        printf("Voce pode usar .\\'CifraDeCesar.exe' chave para maior agilidade\n");
         return true;
     }
     return false;
+}
+
+int perguntarAChave(void)
+{
+    int chave = 0;
+    printf("Digite a chave de cifra (numero inteiro): ");
+    scanf("%d", &chave);
+    getchar();
+    return chave;
+}
+
+char* perguntarOTexto(void)
+{
+    static char texto[1000];
+    printf("Digite o texto a ser cifrado: ");
+    fgets(texto, sizeof(texto), stdin);
+    return texto;
 }
