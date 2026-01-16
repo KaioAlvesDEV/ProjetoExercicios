@@ -4,33 +4,21 @@
 #include <stdbool.h>
 
 //Erros
-const int VALOR_ERRADO_DE_ARGUMENTOS = 1;
+const int VALOR_CORRETO_DE_ARGUMENTOS = 3;
 const int VALOR_NO_INTERVALO_ERRADO = 2;
+
+//Protótipos
+int temNumeroErradoDeArgumentos(int argc, int valor_correto_de_argumentos);
+int temErros(int argc);
 
 int main(int argc, char const *argv[])
 {
-    const int ARGUMENTOS_NECESSARIOS = 2;
     const int POSICAO_CHAVE = 1;
-
-    if(argc == 1)
+    if(temErros(argc))
     {
-        char chave_str;
-        printf("Digite a chave de cifragem (numero inteiro entre 0 e 9): ");
-        scanf(" %c", &chave_str);
-        getchar();
-        argv[POSICAO_CHAVE] = &chave_str;
-    }
+        const bool NUMERO_ERRADO_DE_ARGUMENTOS = temNumeroErradoDeArgumentos(argc, VALOR_CORRETO_DE_ARGUMENTOS);
 
-    if(argc > ARGUMENTOS_NECESSARIOS)
-    {
-        printf("Muitos argumentos fornecidos.\n");
-        return VALOR_ERRADO_DE_ARGUMENTOS;
-    }
-
-    if(strlen(argv[POSICAO_CHAVE]) != 1 || argv[POSICAO_CHAVE][0] < '0' || argv[POSICAO_CHAVE][0] > '9')
-    {
-        printf("Argumento invalido. Deve ser um numero inteiro entre 0 e 9.\n");
-        return VALOR_NO_INTERVALO_ERRADO;
+        if (NUMERO_ERRADO_DE_ARGUMENTOS) return 1;
     }
 
     int chave = atoi(argv[POSICAO_CHAVE]);
@@ -59,4 +47,24 @@ int main(int argc, char const *argv[])
     getchar();
 
     return 0;
+}
+
+int temNumeroErradoDeArgumentos(int argc, int valor_correto_de_argumentos)
+{
+    if(argc != valor_correto_de_argumentos)
+    {
+        return true;
+    }
+    return false;
+}
+
+int temErros(int argc)
+{
+    if(temNumeroErradoDeArgumentos(argc, VALOR_CORRETO_DE_ARGUMENTOS))
+    {
+        printf("Erro: Numero errado de argumentos.\n");
+        printf("Uso correto: ./cifraDeCesar chave texto\n");
+        return true;
+    }
+    return false;
 }
