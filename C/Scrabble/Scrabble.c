@@ -21,11 +21,12 @@ int main(void)
     pedirPalavras(respostas_jogadores);
 
     int pontuacao_jogadores[2] = {0, 0};
+
     for(int jogador = 0; jogador < 2; jogador++)
     {
         calcularPontuacao(respostas_jogadores[jogador], valor_letra, &pontuacao_jogadores[jogador]);
     }
-
+    
     mostrarPontuacaoJogadores(pontuacao_jogadores);
     mostrarJogadorVencedor(pontuacao_jogadores);
 
