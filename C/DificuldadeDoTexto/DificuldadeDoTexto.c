@@ -3,13 +3,14 @@
 #include <ctype.h>
 #include <math.h>
 
+char* string_input(const char* prompt);
+void del(int arr[], int *n, int key);
+
 int main(void)
 {
-    const int TAMANHO_MAXIMO_TEXTO = 100000;
-
-    char texto[TAMANHO_MAXIMO_TEXTO];
-    printf("Insira o texto a ser avaliado:\n");
-    fgets(texto, sizeof(texto), stdin);
+    char* texto;
+    texto = string_input("Digite o texto para analise:\n");
+    printf("%s\n", texto);
 
     for(int letra = 0; texto[letra] != '\0'; letra++)
     {
@@ -68,4 +69,13 @@ int main(void)
 
     getchar();
     return 0;
+}
+
+char* string_input(const char* prompt)
+{
+    static char buffer[100000];
+    printf("%s", prompt);
+    fgets(buffer, sizeof(buffer), stdin);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    return buffer;
 }
